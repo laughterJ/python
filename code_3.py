@@ -49,3 +49,12 @@ print(nums[-5:])
 nums_1 = nums[:]
 # 下面的方式行不通(只是将nums_2这个变量指向nums指向的列表，并不是复制出一个新的列表)
 nums_2 = nums
+
+
+# 元祖(不可变的列表)
+
+# 定义一个元祖
+nums = (1,2,3,4,5)
+print(nums)
+for val in nums:
+	print(val)
