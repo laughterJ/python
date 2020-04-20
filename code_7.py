@@ -1,5 +1,18 @@
 """函数"""
 
+# 导入整个模块
+import code_8
+# 导入特定的函数
+from code_8 import print_info_1
+# 使用 ad 给模块指定别名
+import code_8 as p
+# 使用 as 给函数指定别名
+from code_8 import print_info_2 as pi
+# 导入模块中所有函数
+from code_8 import *
+
+
+
 # 定义函数
 def hello():
 	print("Hello python")
@@ -35,3 +48,8 @@ def format_name(first_name, last_name):
 print(format_name("Hao", "Jiang"))
 
 
+# 将函数存储在模块中
+code_8.print_info(["name", "age", "sex", "grade"])
+print_info_1(["name", "age", "sex", "grade"])
+pi(["name", "age", "sex", "grade"])
+p.print_info_2(["Jack", 18, "male", 7])
