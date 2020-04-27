@@ -14,8 +14,8 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
 
         # 每个外星人最初都在屏幕左上角附近
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
+        self.rect.x = self.rect.width * 0.1
+        self.rect.y = self.rect.height * 0.1
 
         # 存储外星人的准确位置
         self.x = float(self.rect.x)

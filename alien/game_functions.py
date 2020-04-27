@@ -1,6 +1,7 @@
 import sys
 import pygame
 from bullet import Bullet
+from alien import Alien
 
 
 def check_events(common_setting, screen, ship, bullets):
@@ -41,6 +42,48 @@ def fire_bullet(screen, common_setting, ship, bullets):
         bullets.add(new_bullet)
 
 
+def create_aliens(screen, common_setting, aliens, ship):
+    """创建外星人群"""
+    # 创建一个Alien对象，获取它的宽高
+    alien = Alien(screen, common_setting)
+    alien_width = alien.rect.width
+    alien_height = alien.rect.height
+    # 计算一行可容纳的外星人数量
+    number_alien_x = get_aliens_number_x(screen, common_setting, alien_width)
+    # 计算可容纳外星人行数
+    number_alien_y = get_aliens_number_y(screen, common_setting, alien_height, ship.rect.height)
+
+    # 创建第一行外星人
+    for row_number in range(number_alien_y):
+        for alien_number in range(number_alien_x):
+            create_alien(screen, common_setting, aliens, alien_number, row_number)
+
+
+def get_aliens_number_x(screen, common_setting, alien_width):
+    # 计算一行中可以用来绘制外星人的宽度
+    available_space_x = common_setting.screen_width - alien_width
+    # 根据行宽计算可以绘制的外星人数量
+    number_alien_x = int(available_space_x / (1.6 * alien_width))
+    return number_alien_x
+
+
+def get_aliens_number_y(screen, common_setting, alien_height, ship_height):
+    # 计算可用来绘制外星人的高度
+    available_space_y = common_setting.screen_height - ship_height - 2 * alien_height
+    # 根据高度计算可绘制外星人行数
+    number_alien_y = int(available_space_y / (1.6 * alien_height))
+    return number_alien_y
+
+
+def create_alien(screen, common_setting, aliens, alien_number, row_number):
+    alien = Alien(screen, common_setting)
+    alien_width = alien.rect.width
+    alien_height = alien.rect.height
+    alien.rect.x = alien_width + 1.6 * alien_width * alien_number
+    alien.rect.y = 0.2 * alien_height + 1.6 * alien_height * row_number
+    aliens.add(alien)
+
+
 def update_bullets(bullets):
     """更新子弹位置，并删除已消失子弹"""
     bullets.update()
@@ -49,10 +92,10 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
-def update_screen(common_setting, screen, ship, alien, bullets):
+def update_screen(common_setting, screen, ship, aliens, bullets):
     screen.fill(common_setting.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.draw()
-    alien.draw()
+    aliens.draw(screen)
     pygame.display.flip()
