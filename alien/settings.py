@@ -16,3 +16,9 @@ class Setting:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullet_limit = 8
+
+        # 外星人相关设置
+        self.alien_speed = 10
+        self.fleet_drop_speed = 10
+        # fleet_direction 为 1 表示右移，为 0 表示左移
+        self.fleet_direction = 1

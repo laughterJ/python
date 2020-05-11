@@ -99,3 +99,8 @@ def update_screen(common_setting, screen, ship, aliens, bullets):
     ship.draw()
     aliens.draw(screen)
     pygame.display.flip()
+
+
+def update_aliens(aliens):
+    """更新外星人位置"""
+    aliens.update()

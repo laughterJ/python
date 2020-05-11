@@ -23,3 +23,8 @@ class Alien(Sprite):
     def draw(self):
         """在指定位置绘制外星人"""
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """向右移动外星人"""
+        self.x += self.common_setting.alien_speed
+        self.rect.x = self.x
